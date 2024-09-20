@@ -28,7 +28,7 @@ products.forEach((product) => {
         </div>
 
         <div class="product-quantity-container">
-            <select>
+            <select class="quantity-selector-${product.id}">
                 <option selected value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -68,6 +68,7 @@ products.forEach((product) => {
             
             // retrieved the product ID from the data-product-id attribute, stored in productId variable
             const productId = button.dataset.productId;
+            const quantitySelect = Number(document.querySelector(`.quantity-selector-${productId}`).value);
 
             let matchingItem; 
             cart.forEach((item) => {
@@ -79,11 +80,11 @@ products.forEach((product) => {
 
             // if a matching product is found, increase its quantity by 1, otherwise, add a new item to the cart array with quantity 1
             if (matchingItem) {
-                matchingItem.quantity += 1;
+                matchingItem.quantity += quantitySelect;
             } else {
                 cart.push({
                     productId: productId,
-                    quantity: 1
+                    quantity: quantitySelect
                 });
             }
 
