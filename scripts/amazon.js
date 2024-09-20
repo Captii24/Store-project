@@ -1,3 +1,5 @@
+import { cart } from '../data/cart.js';
+import { products } from '../data/products.js';
 // accesses the div products-grid and links it to productsHTML variable
 let productsHTML = document.querySelector('.products-grid');
 
@@ -44,13 +46,13 @@ products.forEach((product) => {
 
         <div class="product-spacer"></div>
 
-        <div class="added-to-cart">
+        <div class="added-to-cart"
             <img src="images/icons/checkmark.png">
                 Added
             </div>
 
             <button class="add-to-cart-button button-primary"
-            data-product-id="${product.id }"> 
+            data-product-id="${product.id}"> 
                 Add to Cart
             </button>
     </div>`
@@ -65,9 +67,9 @@ products.forEach((product) => {
         button.addEventListener('click', () => {
             /* when clicked, runs a function to add the product to the cart array, or increases 
             the quantity of said product in the cart array */
-            
+
             // retrieved the product ID from the data-product-id attribute, stored in productId variable
-            const productId = button.dataset.productId;
+            const { productId } = button.dataset;
             const quantitySelect = Number(document.querySelector(`.quantity-selector-${productId}`).value);
 
             let matchingItem; 

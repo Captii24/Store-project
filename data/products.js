@@ -1,4 +1,34 @@
-const products = [
+export const products = [
+  {
+    id: "c9617585-5076-4998-8698-115115842069",
+    image: "images/products/umbrella.jpg",
+    name: "Green Short Rain Umbrella",
+    rating: {
+      stars: 4,
+      count: 122
+    },
+    priceCents: 795,
+    keywords: [
+      "rain",
+      "umbrella",
+      "wet"
+    ]
+  },
+  {
+    id: "c9617585-5076-4998-8698-652115842069",
+    image: "images/products/backpack.jpg",
+    name: "Black Travel Sports Backpack",
+    rating: {
+      stars: 4.5,
+      count: 190
+    },
+    priceCents: 2295,
+    keywords: [
+      "black",
+      "backpack",
+      "travel"
+    ]
+  },
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     image: "images/products/athletic-cotton-socks-6-pairs.jpg",
