@@ -1,7 +1,6 @@
 import { cart } from '../data/cart.js';
 import { products } from '../data/products.js';
-// accesses the div products-grid and links it to productsHTML variable
-let productsHTML = document.querySelector('.products-grid');
+import { productsHTML } from '../data/products.js';
 
 /* iterates over each product in the products array, generating the html for each product in the array,
 and adds it to the products-grid div aka productsHTML*/
@@ -60,45 +59,44 @@ products.forEach((product) => {
     productsHTML.innerHTML += html;
 });
 
-// selects all add-to-cart buttons 
-    document.querySelectorAll('.add-to-cart-button')
-    // iterates over each button and adds an event listener for a click event
+document.querySelectorAll('.add-to-cart-button')
     .forEach((button) => {
         button.addEventListener('click', () => {
-            /* when clicked, runs a function to add the product to the cart array, or increases 
-            the quantity of said product in the cart array */
-
             // retrieved the product ID from the data-product-id attribute, stored in productId variable
             const { productId } = button.dataset;
-            const quantitySelect = Number(document.querySelector(`.quantity-selector-${productId}`).value);
-
-            let matchingItem; 
-            cart.forEach((item) => {
-                // if a matching product is found, it's stored in matchingItem variable
-                if (productId === item.productId) {
-                    matchingItem = item;
-                }
-            });
-
-            // if a matching product is found, increase its quantity by 1, otherwise, add a new item to the cart array with quantity 1
-            if (matchingItem) {
-                matchingItem.quantity += quantitySelect;
-            } else {
-                cart.push({
-                    productId: productId,
-                    quantity: quantitySelect
-                });
-            }
-
-            // we need to track the total cart quantity, then update the html
-            // we can loop through the cart array and add up the quantities of each product
-            let cartQuantity = 0;
-
-            cart.forEach((item) => {
-                cartQuantity += item.quantity;
-            });
-            document.querySelector('.cart-quantity').textContent = cartQuantity;
-
-            console.log(cart);
-        });
+            addToCart(productId);
+            updateCart();
+    });
 });
+
+function addToCart(productId) {
+    const quantitySelect = Number(document.querySelector(`.quantity-selector-${productId}`).value);
+    let matchingItem;
+    cart.forEach((item) => {
+        // if a matching product is found, it's stored in matchingItem variable
+        if (productId === item.productId) {
+            matchingItem = item;
+        }
+    });
+
+    // if a matching product is found, increase its quantity by 1, otherwise, add a new item to the cart array with quantity 1
+    if (matchingItem) {
+        matchingItem.quantity += quantitySelect;
+    } else {
+        cart.push({
+            productId: productId,
+            quantity: quantitySelect
+        });
+    }
+}
+
+function updateCart() {
+    let cartQuantity = 0;
+
+    cart.forEach((item) => {
+        cartQuantity += item.quantity;
+    });
+    document.querySelector('.cart-quantity').textContent = cartQuantity;
+
+    console.log(cart);
+}

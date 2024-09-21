@@ -1,3 +1,5 @@
+export let productsHTML = document.querySelector('.products-grid');
+
 export const products = [
   {
     id: "c9617585-5076-4998-8698-115115842069",
