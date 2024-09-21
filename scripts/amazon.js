@@ -1,6 +1,5 @@
-import { cart } from '../data/cart.js';
-import { products } from '../data/products.js';
-import { productsHTML } from '../data/products.js';
+import { cart, addToCart } from '../data/cart.js';
+import { products, productsHTML } from '../data/products.js';
 
 /* iterates over each product in the products array, generating the html for each product in the array,
 and adds it to the products-grid div aka productsHTML*/
@@ -69,32 +68,11 @@ document.querySelectorAll('.add-to-cart-button')
     });
 });
 
-function addToCart(productId) {
-    const quantitySelect = Number(document.querySelector(`.quantity-selector-${productId}`).value);
-    let matchingItem;
-    cart.forEach((item) => {
-        // if a matching product is found, it's stored in matchingItem variable
-        if (productId === item.productId) {
-            matchingItem = item;
-        }
-    });
-
-    // if a matching product is found, increase its quantity by 1, otherwise, add a new item to the cart array with quantity 1
-    if (matchingItem) {
-        matchingItem.quantity += quantitySelect;
-    } else {
-        cart.push({
-            productId: productId,
-            quantity: quantitySelect
-        });
-    }
-}
-
 function updateCart() {
     let cartQuantity = 0;
 
-    cart.forEach((item) => {
-        cartQuantity += item.quantity;
+    cart.forEach((cartItem) => {
+        cartQuantity += cartItem.quantity;
     });
     document.querySelector('.cart-quantity').textContent = cartQuantity;
 
