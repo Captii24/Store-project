@@ -1,6 +1,6 @@
 import { cart, addToCart } from '../data/cart.js';
 import { products, productsHTML } from '../data/products.js';
-
+import { formatCurrency } from './scripts/utils/money.js';
 /* iterates over each product in the products array, generating the html for each product in the array,
 and adds it to the products-grid div aka productsHTML*/
 products.forEach((product) => {
@@ -24,7 +24,7 @@ products.forEach((product) => {
         </div>
 
         <div class="product-price">
-            $${(product.priceCents / 100).toFixed(2)}
+            $${formatCurrency(product.priceCents)}
         </div>
 
         <div class="product-quantity-container">
