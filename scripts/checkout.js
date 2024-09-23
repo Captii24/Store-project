@@ -102,6 +102,7 @@ document.querySelectorAll('.delete-quantity-link')
         deleteLink.addEventListener('click', () => {
             const productId = deleteLink.dataset.productId; 
             removeFromCart(productId);
-            document.querySelector(`.cart-item-container-${productId}`).remove();
+            const cartItem = document.querySelector(`.cart-item-container-${productId}`);
+            cartItem.remove();
     });
 });
